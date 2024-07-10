@@ -1,0 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navigations{
+  display: flex;
+}
+
+.right_section{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* justify-items: stretch; */
+}

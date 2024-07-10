@@ -1,0 +1,110 @@
+/* File contain all navigation bars */
+
+/* Left-Nav */
+.left_nav{
+    /* relative to topnav padding */
+    width: 10vh;
+    height: 100vh;
+    background-color: #1D2123;
+    padding: 1vh;
+    /* position: fixed; */
+}
+
+.profile{
+    width: 8vh;
+    height: 8vh;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 0;
+    background-size: cover;
+    background-image: url('https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png');
+}
+
+.profile:hover{
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* .profile img{
+    width: 100%;
+    border-radius: 50%;
+    
+} */
+
+/* Top-Nav */
+
+.top_nav{
+    width: calc(100vw - 10vh);
+    height: 7vh;
+    position: relative;
+    z-index: 1;
+    background-color: #36393E;
+    /* relative to left_nav width */
+    padding: 1vh 1vh 1vh 11vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.878);
+}
+
+.top_nav p{
+    color: white;
+}
+
+
+
+
+
+.button {
+    min-width: 120px;
+  
+    position: relative;
+    cursor: pointer;
+  
+    padding: 12px 17px;
+    border: 0;
+    border-radius: 7px;
+  
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    background: radial-gradient(
+      ellipse at bottom,
+      rgba(71, 81, 92, 1) 0%,
+      rgba(11, 21, 30, 1) 45%
+    );
+  
+    color: rgb(255, 255, 255, 0.66);
+  
+    transition: all 0.4s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  
+  .button::before {
+    content: "";
+    width: 70%;
+    height: 1px;
+  
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+  
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    opacity: 0.2;
+  
+    transition: all 1s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  
+  .button:hover {
+    color: rgb(255, 255, 255, 1);
+    transform: scale(1.1) translateY(-2px);
+  }
+  
+  .button:hover::before {
+    opacity: 1;
+  }
+  
