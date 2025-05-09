@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { authService } from '../services/api';
 import './css/login.css';
 
 function Login() {
@@ -8,37 +9,34 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Set your dummy credentials here
-  const DUMMY_USERNAME = 'testuser';
-  const DUMMY_PASSWORD = 'testpass';
-
-  // Check if already logged in
-  useEffect(() => {
-    if (localStorage.getItem('isAuthenticated') === 'true') {
-      navigate('/');
-    }
-  }, [navigate]);
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     
-    // Trim whitespace from inputs
-    const trimmedUsername = username.trim();
-    const trimmedPassword = password.trim();
-    
-    if (trimmedUsername === DUMMY_USERNAME && trimmedPassword === DUMMY_PASSWORD) {
-      // Set authentication
+    try {
+      // Use the authService instead of the local login function
+      const response = await authService.login({ username, password });
+      const data = response.data;
+      
+      // Store authentication data from MongoDB response
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('username', data.username);
+      localStorage.setItem('userId', data._id);
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('username', trimmedUsername);
-      setError('');
+      
+      console.log("Login successful:", username);
       navigate('/');
-    } else {
-      setError('Invalid username or password');
+    } catch (error) {
+      console.error("Login error:", error);
+      setError(
+        error.response?.data?.message || 
+        error.message || 
+        'Login failed. Please check your credentials.'
+      );
     }
   };
 
   return (
-    <div className="login-container"> 
+    <div className="login-container">
       <div className="stars">
         {[...Array(50)].map((_, i) => (
           <div key={i} className="star"></div>
@@ -71,7 +69,7 @@ function Login() {
             <button type="submit" className="login-button">Login</button>
           </form>
           <p className="signup-text">
-            Dummy login: <b>testuser</b> / <b>testpass</b>
+            Don't have an account? <Link to="/register" style={{ color: '#5865f2', textDecoration: 'none' }}>Register</Link>
           </p>
         </div>
       </div>
