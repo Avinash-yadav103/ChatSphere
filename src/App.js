@@ -14,7 +14,7 @@ function App() {
         <div className="right_section">
         <TopNav/>
         <Main />
-        </div>
+        </div> 
       </div>
       
       <Router>
